@@ -1,5 +1,5 @@
 diff --git _constants.py _constants.py
-index af9a04b..5c00295 100644
+index af9a04b..45c6ea8 100644
 --- _constants.py
 +++ _constants.py
 @@ -8,4 +8,7 @@ OVERRIDE_CAST_TO_HEADER = "____stainless_override_cast_to"
@@ -9,8 +9,8 @@ index af9a04b..5c00295 100644
 -DEFAULT_LIMITS = httpx.Limits(max_connections=100, max_keepalive_connections=20)
 +# max_connections 在 pool 里面的最大 connection 数量
 +#   对于 stream，即使已经主动断开但没调用 .close() 也仍然会被计算在内
-+# max_keepalive_connections 能够启用 http keepalive 的最大连接数，超过就只能用 connection: close 头
-+DEFAULT_LIMITS = httpx.Limits(max_connections=240, max_keepalive_connections=40)
++# max_keepalive_connections 能够启用 http keepalive 的最大连接数，超过就只能用 `connection: close` 头
++DEFAULT_LIMITS = httpx.Limits(max_connections=1000, max_keepalive_connections=40)
 diff --git _streaming.py _streaming.py
 index 85cec70..263c01a 100644
 --- _streaming.py
